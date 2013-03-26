@@ -8,6 +8,6 @@ RF24/RF24.o: RF24/RF24.cpp RF24/nRF24L01.h RF24/RF24_config.h \
   //Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/cores/arduino/Print.h \
   //Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/cores/arduino/Printable.h \
   //Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/cores/arduino/new.h \
-  /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/variants/mega/pins_arduino.h \
+  /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/variants/standard/pins_arduino.h \
   /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SPI/SPI.h \
   RF24/RF24.h RF24/RF24_config.h
