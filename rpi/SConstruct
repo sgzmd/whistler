@@ -1,0 +1,18 @@
+deps = ["nrfl.cpp",
+        "lib/RF24/RF24.cpp",
+        "lib/RF24/compatibility.c",
+        "lib/spi/spi.cpp",
+        "lib/gpio/gpio.cpp"]
+
+env = Environment()
+
+swigCmdLine = 'swig -c++ -python nrfl.i'
+swigDefs = env.Command( 'nrfl_wrap.cxx', 'nrfl.i', swigCmdLine )
+env.Depends( 'nrfl', swigDefs )
+env.Append( SWIGFLAGS = '-c++ -python' )
+env.Append( CPPPATH = '/usr/include/python2.7' )
+
+SharedLibrary('nrfl.so', deps + ['nrfl_wrap.cxx'],
+              CPPPATH = '/usr/include/python2.7',
+              SHLIBPREFIX = '_')
+
