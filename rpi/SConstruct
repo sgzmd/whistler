@@ -2,17 +2,19 @@ deps = ["nrfl.cpp",
         "lib/RF24/RF24.cpp",
         "lib/RF24/compatibility.c",
         "lib/spi/spi.cpp",
-        "lib/gpio/gpio.cpp"]
+        "lib/gpio/gpio.cpp",
+        "lib/libcxxtl/tri_logger.cpp"]
 
-env = Environment()
+env = Environment(CCFLAGS = '-DETLOG -I../common/arpix')
 
-swigCmdLine = 'swig -c++ -python nrfl.i'
+swigCmdLine = 'swig -c++ -python -I../common/arpix nrfl.i'
 swigDefs = env.Command( 'nrfl_wrap.cxx', 'nrfl.i', swigCmdLine )
 env.Depends( 'nrfl', swigDefs )
 env.Append( SWIGFLAGS = '-c++ -python' )
 env.Append( CPPPATH = '/usr/include/python2.7' )
 
-SharedLibrary('nrfl.so', deps + ['nrfl_wrap.cxx'],
+env.SharedLibrary('nrfl.so', deps + ['nrfl_wrap.cxx'],
               CPPPATH = '/usr/include/python2.7',
               SHLIBPREFIX = '_')
 
+env.Program('simple-server', deps + ['main.cpp'])

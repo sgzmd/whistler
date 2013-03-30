@@ -23,6 +23,9 @@
 #include "lib/RF24/RF24.h"
 #include "lib/RF24/compatibility.h"
 
+#include "lib/libcxxtl/tri_logger.hpp"
+#include <arpix.h>
+
 using namespace std;
 
 // Radio pipe addresses for the 2 nodes to communicate.
@@ -34,6 +37,8 @@ const uint64_t READING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t WRITING_PIPE = 0xF0F0F0F0E1LL;
 
 
+char LOG_BUFFER[1024];
+
 // CE and CSN pins On header using GPIO numbering (not pin numbers)
 RF24 radio(25,24);  // Setup for GPIO 23 CE and 24 CSN
 
@@ -44,6 +49,8 @@ struct _ds {
   long data;
   char parity;
 };
+
+static ArPiMessage EMPTY_MESSAGE;
 
 char parity(unsigned long ino) {
   int noofones = 0;
@@ -67,26 +74,20 @@ struct _ds receivedData;
 
 void setup(void)
 {
-
-  printf("sizeof(long): %d\n", sizeof(long));
-  printf("sizeof(int): %d\n", sizeof(int));
+  TRI_LOG(sizeof(long));
+  TRI_LOG(sizeof(int));
 	// Refer to RF24.h or nRF24L01 DS for settings
 	radio.begin();
-	radio.setPayloadSize(8);
 	radio.setRetries(15,15);
 	radio.setDataRate(RF24_250KBPS);
 	radio.setPALevel(RF24_PA_HIGH);
 	radio.setChannel(0);
 	radio.setCRCLength(RF24_CRC_16);
+  radio.enableDynamicPayloads();
 
 	// Open 6 pipes for readings ( 5 plus pipe0, also can be used for reading )
 	radio.openWritingPipe(WRITING_PIPE);
 	radio.openReadingPipe(1, READING_PIPE);
-	// radio.openReadingPipe(2,pipes[2]);
-	// radio.openReadingPipe(3,pipes[3]);
-	// radio.openReadingPipe(4,pipes[4]);
-	// radio.openReadingPipe(5,pipes[5]);
-
 	//
 	// Start listening
 	//
@@ -98,9 +99,11 @@ void setup(void)
 	//
 
 	radio.printDetails();
+
+  memset(&EMPTY_MESSAGE, 0, sizeof(ArPiMessage));
 }
 
-void loop(void)
+ArPiMessage loop(void)
 {
 
 	char blank[21]="FFFFFFFFFFFFFFFFFFFF";
@@ -118,12 +121,11 @@ void loop(void)
 		memcpy(&data, receivePayload, sizeof(data));
 
 		if (data.parity != parity(data.data)) {
-			printf("parity doesn't match, rejecting...\n");
-			return;
+			TRI_LOG_STR("parity doesn't match, rejecting...\n");
+			return EMPTY_MESSAGE;
 		}
 
 		unsigned long timer = data.data;
-		printf("Timer: %d\n", timer);
 
 		// Display it on screen
 		printf("Recv: size=%i payload=%d ",len, timer);
@@ -139,5 +141,7 @@ void loop(void)
 			printf("\n\r");
                 }
 	}
+
+  return EMPTY_MESSAGE;
 //	usleep(20);
 }

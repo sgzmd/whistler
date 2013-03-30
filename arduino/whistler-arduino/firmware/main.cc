@@ -112,5 +112,5 @@ void loop(void)
   }
 
   // Try again 1s later
-  delay(1000);
+  delay(50);
 }
