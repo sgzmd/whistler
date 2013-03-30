@@ -51,12 +51,12 @@ void setup(void)
   printf("sizeof(long): %d\n", sizeof(long));
   printf("sizeof(int): %d\n", sizeof(int));
 
-  radio.setPayloadSize(8);
   radio.setRetries(15,15);
   radio.setDataRate(RF24_250KBPS);
   radio.setPALevel(RF24_PA_HIGH);
   radio.setChannel(0);
   radio.setCRCLength(RF24_CRC_16);
+  radio.enableDynamicPayloads();
 
   radio.openWritingPipe(WRITING_PIPE);
   radio.openReadingPipe(1, READING_PIPE);
