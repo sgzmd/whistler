@@ -24,6 +24,7 @@ LINKER=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/
 
 COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-DF_CPU=$(CLOCK)L -DARDUINO=152 \
+	-I../../../common/arpix \
 	-I/$(ARDUINO)/avr/cores/arduino \
 	-I$(ARDUINO)/avr/variants/standard \
 	-I$(ARDUINO)/avr/libraries/SPI \

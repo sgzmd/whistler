@@ -3,12 +3,21 @@
 #include <RF24.h>
 #include <printf.h>
 
+#include <arpix.h>
+
 // CE=9, CSN=10
 RF24 radio(9,10);
 
 // Radio pipe addresses for the 2 nodes to communicate.
 const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
+
+void dump_airpimessage(const ArPiMessage* rpm) {
+  printf("ArPiMessage { sender_id = %x, data = %d, message = %s}",
+         rpm->sender_id,
+         rpm->data,
+         rpm->debug_message);
+}
 
 //
 // Role management
@@ -17,10 +26,7 @@ const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
 // in this system.  Doing so greatly simplifies testing.
 //
 
-struct _ds {
-  long data;
-  char parity;
-};
+ArPiMessage EMPTY_MESSAGE;
 
 char parity(unsigned long ino) {
   int noofones = 0;
@@ -64,6 +70,12 @@ void setup(void)
   radio.startListening();
 
   radio.printDetails();
+
+  EMPTY_MESSAGE.sender_id = 0xDEADBEEF;
+  EMPTY_MESSAGE.data = 0;
+  // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
+  // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
+  // EMPTY_MESSAGE.debug_message[strlen(EMPTY_MESSAGE.debug_message)] = 0;
 }
 
 void loop(void)
@@ -75,11 +87,17 @@ void loop(void)
   unsigned long time = millis();
   printf("Now sending %lu...",time);
 
-  struct _ds data;
+  ArPiMessage data;
+  // memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
+
   data.data = time;
   data.parity = parity(time);
 
-  bool ok = radio.write( &data, sizeof(data) );
+  // memset(data.debug_message, 0, sizeof(data.debug_message));
+
+  dump_airpimessage(&data);
+
+  bool ok = radio.write( &data, sizeof(data));
 
   if (ok)
     printf("ok...");
@@ -104,7 +122,7 @@ void loop(void)
   else
   {
     // Grab the response, compare, and send to debugging spew
-    struct _ds got_time;
+    ArPiMessage got_time;
     radio.read( &got_time, sizeof(got_time) );
 
     // Spew it

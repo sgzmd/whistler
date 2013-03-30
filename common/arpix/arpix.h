@@ -3,8 +3,8 @@
 
 struct ArPiMessage {
   unsigned long sender_id;
-  unsigned long message;
-  char debug_message[0x100];
+  unsigned long data;
+  char parity;
 };
 
 #endif
