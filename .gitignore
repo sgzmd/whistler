@@ -6,3 +6,9 @@
 *.pyc
 *.d
 whistler.sublime-*
+.AppleDouble
+.DS_*
+*.dblite
+*.os
+*_wrap.cxx
+rpi/nrfl.py
