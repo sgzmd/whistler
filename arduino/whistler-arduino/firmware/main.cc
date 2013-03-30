@@ -12,11 +12,10 @@ RF24 radio(9,10);
 const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
 
-void dump_airpimessage(const ArPiMessage* rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %d, message = %s}",
-         rpm->sender_id,
-         rpm->data,
-         rpm->debug_message);
+void dump_airpimessage(const ArPiMessage& rpm) {
+  printf("ArPiMessage { sender_id = %x, data = %d}",
+         rpm.sender_id,
+         rpm.data);
 }
 
 //

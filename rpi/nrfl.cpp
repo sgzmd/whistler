@@ -43,7 +43,7 @@ char LOG_BUFFER[1024];
 RF24 radio(25,24);  // Setup for GPIO 23 CE and 24 CSN
 
 // Receive payload size
-char receivePayload[32];
+char receivePayload[1024];
 
 struct _ds {
   long data;
@@ -51,6 +51,12 @@ struct _ds {
 };
 
 static ArPiMessage EMPTY_MESSAGE;
+
+void dump_airpimessage(const ArPiMessage& rpm) {
+  printf("ArPiMessage { sender_id = %X, data = %d}\n",
+         rpm.sender_id,
+         rpm.data);
+}
 
 char parity(unsigned long ino) {
   int noofones = 0;
@@ -117,7 +123,9 @@ ArPiMessage loop(void)
 		uint8_t len = radio.getDynamicPayloadSize();
 		radio.read( receivePayload, len );
 
-		struct _ds data;
+    TRI_LOG(len);
+
+		ArPiMessage data;
 		memcpy(&data, receivePayload, sizeof(data));
 
 		if (data.parity != parity(data.data)) {
@@ -128,7 +136,9 @@ ArPiMessage loop(void)
 		unsigned long timer = data.data;
 
 		// Display it on screen
-		printf("Recv: size=%i payload=%d ",len, timer);
+		// printf("Recv: size=%i payload=%d ",len, timer);
+
+    dump_airpimessage(data);
 
 		// Send back payload to sender
 		radio.stopListening();
@@ -136,10 +146,12 @@ ArPiMessage loop(void)
 		// Match for blank and do not re-send it out
 		if ( strcmp(receivePayload,blank)  ) {
 			radio.write(receivePayload,len);
-			printf("Send: size=%i payload=%s\n\r",len,receivePayload);
+			TRI_LOG_STR("Sending back");
+
+      return data;
 		} else {
-			printf("\n\r");
-                }
+			TRI_LOG_STR("Not sending anything back");
+    }
 	}
 
   return EMPTY_MESSAGE;
