@@ -12,11 +12,10 @@ RF24 radio(9,10);
 const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
 
-void dump_airpimessage(const ArPiMessage* rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %d, message = %s}",
-         rpm->sender_id,
-         rpm->data,
-         rpm->debug_message);
+void dump_airpimessage(const ArPiMessage& rpm) {
+  printf("ArPiMessage { sender_id = %X, data = %d}\n",
+         rpm.sender_id,
+         rpm.data);
 }
 
 //
@@ -71,7 +70,7 @@ void setup(void)
 
   radio.printDetails();
 
-  EMPTY_MESSAGE.sender_id = 0xDEADBEEF;
+  EMPTY_MESSAGE.sender_id = 0xDEAD;
   EMPTY_MESSAGE.data = 0;
   // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
   // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
@@ -88,14 +87,14 @@ void loop(void)
   printf("Now sending %lu...",time);
 
   ArPiMessage data;
-  // memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
+  memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
 
   data.data = time;
   data.parity = parity(time);
 
   // memset(data.debug_message, 0, sizeof(data.debug_message));
 
-  dump_airpimessage(&data);
+  dump_airpimessage(data);
 
   bool ok = radio.write( &data, sizeof(data));
 
