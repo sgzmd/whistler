@@ -4,6 +4,7 @@
 #include <printf.h>
 
 #include <arpix.h>
+#include <configure_radio.h>
 
 // CE=9, CSN=10
 RF24 radio(9,10);
@@ -49,19 +50,10 @@ void setup(void)
 {
   Serial.begin(57600);
   printf_begin();
-  printf("\n\rRF24/examples/GettingStarted/\n\r");
 
   radio.begin();
 
-  printf("sizeof(long): %d\n", sizeof(long));
-  printf("sizeof(int): %d\n", sizeof(int));
-
-  radio.setRetries(15,15);
-  radio.setDataRate(RF24_250KBPS);
-  radio.setPALevel(RF24_PA_HIGH);
-  radio.setChannel(0);
-  radio.setCRCLength(RF24_CRC_16);
-  radio.enableDynamicPayloads();
+  CONFIGURE_RADIO(radio);
 
   radio.openWritingPipe(WRITING_PIPE);
   radio.openReadingPipe(1, READING_PIPE);
@@ -87,14 +79,12 @@ void loop(void)
   printf("Now sending %lu...",time);
 
   ArPiMessage data;
-  // memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
+  memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
 
   data.data = time;
   data.parity = parity(time);
 
-  // memset(data.debug_message, 0, sizeof(data.debug_message));
-
-  dump_airpimessage(&data);
+  dump_airpimessage(data);
 
   bool ok = radio.write( &data, sizeof(data));
 
@@ -129,5 +119,5 @@ void loop(void)
   }
 
   // Try again 1s later
-  delay(50);
+  delay(100);
 }
