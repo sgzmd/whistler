@@ -14,7 +14,7 @@ const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
 
 void dump_airpimessage(const ArPiMessage& rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %d}",
+  printf("ArPiMessage { sender_id = %X, data = %d}\n",
          rpm.sender_id,
          rpm.data);
 }
@@ -62,7 +62,7 @@ void setup(void)
 
   radio.printDetails();
 
-  EMPTY_MESSAGE.sender_id = 0xDEADBEEF;
+  EMPTY_MESSAGE.sender_id = 0xDEAD;
   EMPTY_MESSAGE.data = 0;
   // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
   // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
