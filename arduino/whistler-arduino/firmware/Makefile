@@ -20,7 +20,7 @@ ACORE=$(ARDUINO)/avr/cores/arduino
 CPP=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc
 CPPFLAGS=-c -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -D__AVR_LIBC_DEPRECATED_ENABLE__ -MMD -fpermissive
 AR  = /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-ar
-LINKER=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc -Os -Wl,--gc-sections -mmcu=$(DEVICE) -lm
+LINKER=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc -Os -Wl,--gc-sections -mmcu=$(DEVICE)
 
 COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-DF_CPU=$(CLOCK)L -DARDUINO=152 \
@@ -31,7 +31,7 @@ COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-IRF24
 
 OBJECTS    = \
-	main.o \
+	pir.o \
 	RF24/RF24.o \
 	$(ACORE)/wiring_digital.o \
 	$(ACORE)/wiring.o \
@@ -45,13 +45,16 @@ OBJECTS    = \
 	$(ACORE)/wiring_pulse.o \
 	$(ACORE)/wiring_shift.o \
 	$(ACORE)/IPAddress.o \
-	$(ACORE)/main.o \
 	$(ACORE)/Stream.o \
 	$(ACORE)/Tone.o \
 	$(ACORE)/hooks.o \
 	$(ACORE)/USBCore.o \
 	$(ARDUINO)/avr/libraries/SPI/SPI.o \
+	$(ACORE)/main.o \
+	../../../common/arpix/arpix.o
 
+TEST_OBJECTS = test_pir.o
+MAIN_OBJECTS = main.o
 
 AVRDUDE = $(ARDUINO_BASE)/hardware/tools/avr/bin/avrdude -p$(DEVICE) \
 	-C$(ARDUINO_BASE)/hardware/tools/avr/etc/avrdude.conf \
@@ -85,10 +88,13 @@ flash:	all
 	$(AVRDUDE) -U flash:w:main.hex:i
 
 clean:
-	rm -f main.hex main.elf main.eep main.d core.a $(OBJECTS)
+	rm -f main*.hex main*.elf main*.eep main*.d core.a $(OBJECTS) $(TEST_OBJECTS) $(MAIN_OBJECTS)
 
 main.elf: $(OBJECTS)
-	$(LINKER) -o main.elf $(OBJECTS) -lm
+	$(LINKER) -o main.elf $(OBJECTS) $(MAIN_OBJECTS) -lm
+
+maintest.elf: $(OBJECTS) $(TEST_OBJECTS)
+	$(LINKER) -o maintest.elf $(TEST_OBJECTS) $(OBJECTS)
 
 main.hex: main.elf
 	rm -f main.hex
@@ -102,6 +108,22 @@ main.hex: main.elf
 
 	avr-objcopy -O ihex -R .eeprom  main.elf main.hex
 	avr-size main.elf
+
+maintest.hex: maintest.elf
+	rm -f maintest.hex
+
+	avr-objcopy -O ihex -j .eeprom \
+		--set-section-flags=.eeprom=alloc,load \
+		--no-change-warnings \
+		--change-section-lma \
+		.eeprom=0 \
+		maintest.elf maintest.eep
+
+	avr-objcopy -O ihex -R .eeprom  maintest.elf maintest.hex
+	avr-size maintest.elf
+
+test:	maintest.hex
+	$(AVRDUDE) -U flash:w:maintest.hex:i
 
 cpp:
 	$(COMPILE) $(SRC)

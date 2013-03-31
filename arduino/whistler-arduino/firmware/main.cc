@@ -64,9 +64,6 @@ void setup(void)
 
   EMPTY_MESSAGE.sender_id = 0xDEAD;
   EMPTY_MESSAGE.data = 0;
-  // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
-  // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
-  // EMPTY_MESSAGE.debug_message[strlen(EMPTY_MESSAGE.debug_message)] = 0;
 }
 
 void loop(void)
