@@ -1,8 +1,9 @@
 #include "activity_sender.h"
+#include "global_config.h"
 
-#include <stdint.h>
 #include <nRF24L01.h>
 #include <RF24.h>
+#include <stdint.h>
 
 #ifndef uint_64t
 typedef unsigned long long int uint_64t;
@@ -20,9 +21,9 @@ unsigned char RadioCallback::parity(unsigned long ino) {
   unsigned long mask = 0x00000001ul; /* start at first bit */
 
   /* until all bits tested */
-  while (mask != 0)  {
+  while (mask != 0) {
     /* if bit is 1, increment noofones */
-    if(mask & ino) {
+    if (mask & ino) {
       noofones++;
     }
     mask = mask << 1; /* go to next bit */
@@ -33,9 +34,7 @@ unsigned char RadioCallback::parity(unsigned long ino) {
   return (noofones & 1);
 }
 
-RadioCallback::RadioCallback(
-    unsigned short ce_pin,
-    unsigned short csn_pin) {
+RadioCallback::RadioCallback(unsigned short ce_pin, unsigned short csn_pin) {
   this->radio_ = new RF24(ce_pin, csn_pin);
 }
 
@@ -45,8 +44,16 @@ bool RadioCallback::init() {
   radio_->openWritingPipe(kWritingPipe);
 
   if (!CHECK_RADIO(*(this->radio_))) {
+    IF_SERIAL_DEBUG("Failed to initialise the radio, will die now");
+    // This is basically all-bad situation and we can die here
+    // but since this is Arduino we're talking about, we'll just enter
+    // inifinite loop and leave it like that
 
+    for (;;) {
+    }
   }
+
+  return true;
 }
 
 RadioCallback::~RadioCallback() {
@@ -54,16 +61,14 @@ RadioCallback::~RadioCallback() {
   delete this->radio_;
 }
 
-void RadioCallback::OnMotionDetected(
-    unsigned short detected_for_ms) {
+void RadioCallback::OnMotionDetected(unsigned short detected_for_ms) {
   ArPiMessage* rpm = new ArPiMessage(0xDEAD, detected_for_ms);
   rpm->parity = parity(detected_for_ms);
 
   for (int i = 0;
-      !radio_->write(rpm, sizeof(ArPiMessage)) && i < kMaxWriteAttempts;
-      ++i) {
+      !radio_->write(rpm, sizeof(ArPiMessage)) && i < kMaxWriteAttempts; ++i) {
     // not quite exponential back-off
-    delay(100 * (i+1));
+    delay(100 * (i + 1));
   }
 
   delete rpm;
