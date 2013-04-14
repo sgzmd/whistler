@@ -26,6 +26,7 @@ private:
   unsigned long long motion_started_ms_;
   bool serial_debug_;
   MotionDetectionCallback* callback_;
+
 public:
   // Constructor.
   // Creates new PirSensor object.

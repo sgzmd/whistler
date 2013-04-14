@@ -34,6 +34,7 @@ COMPILE = $(CPP) -mmcu=$(DEVICE) \
 
 OBJECTS    = \
 	pir.o \
+	global_config.o \
 	activity_sender.o \
 	RF24/RF24.o \
 	$(ACORE)/wiring_digital.o \

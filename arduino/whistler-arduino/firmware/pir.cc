@@ -4,7 +4,9 @@
 
 #include <HardwareSerial.h>
 #include <Arduino.h>
+
 #include "pir.h"
+#include "global_config.h"
 
 #define SERIAL_DEBUG
 
@@ -16,17 +18,20 @@
 #define LOG(a)
 #endif
 
+const int kOneSecondDelay = 1000;
+const int kSmallDelay = 50;
+const int kStandardBaudRate = 57600;
 
 bool PirSensor::Init() {
-  INIT_SERIAL_LOGGING(57600)
+  INIT_SERIAL_LOGGING(kStandardBaudRate)
   pinMode(pin_number_, INPUT);
   digitalWrite(pin_number_, LOW);
 
   for (int i = 0; i < calibration_delay_seconds_; ++i) {
-    delay(1000);
+    delay(kOneSecondDelay);
   }
 
-  delay(50);
+  delay(kSmallDelay);
 
   // TODO(sgzmd): should we check PIR status after calibration?
   return true;

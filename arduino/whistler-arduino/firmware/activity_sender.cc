@@ -16,7 +16,7 @@ const uint_64t kReadingPipe = 0xF0F0F0F0E1LL;
 const uint_64t kWritingPipe = 0xF0F0F0F0D2LL;
 const int kMaxWriteAttempts = 10;
 
-unsigned char RadioCallback::parity(unsigned long ino) {
+unsigned char RadioCallback::CalculateParity(unsigned long ino) {
   int noofones = 0;
   unsigned long mask = 0x00000001ul; /* start at first bit */
 
@@ -38,7 +38,7 @@ RadioCallback::RadioCallback(unsigned short ce_pin, unsigned short csn_pin) {
   this->radio_ = new RF24(ce_pin, csn_pin);
 }
 
-bool RadioCallback::init() {
+bool RadioCallback::Init() {
   CONFIGURE_RADIO(*(this->radio_));
   radio_->openReadingPipe(1, kReadingPipe);
   radio_->openWritingPipe(kWritingPipe);
@@ -63,7 +63,7 @@ RadioCallback::~RadioCallback() {
 
 void RadioCallback::OnMotionDetected(unsigned short detected_for_ms) {
   ArPiMessage* rpm = new ArPiMessage(0xDEAD, detected_for_ms);
-  rpm->parity = parity(detected_for_ms);
+  rpm->parity = CalculateParity(detected_for_ms);
 
   for (int i = 0;
       !radio_->write(rpm, sizeof(ArPiMessage)) && i < kMaxWriteAttempts; ++i) {

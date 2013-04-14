@@ -15,7 +15,7 @@ public:
   RadioCallback(unsigned short ce_pin, unsigned short csn_pin);
 
   // Initialises the radio. Must be called prior to using this callback
-  bool init();
+  bool Init();
 
   // Virtual dtor. Realistically will never be called on Arduino
   virtual ~RadioCallback();
@@ -25,7 +25,7 @@ public:
   virtual void OnMotionDetected(unsigned short detected_for_ms);
 protected:
   // Calculates parity bit for a given number.
-  unsigned char parity(unsigned long ino);
+  unsigned char CalculateParity(unsigned long ino);
 };
 
 #endif
