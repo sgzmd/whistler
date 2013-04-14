@@ -1,6 +1,8 @@
 #ifndef __ARPIX_H
 #define __ARPIX_H
 
+#include <stdlib.h>
+
 struct ArPiMessage {
   ArPiMessage() : sender_id(0), data(0), parity(0) {}
 
