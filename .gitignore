@@ -14,3 +14,7 @@ whistler.sublime-*
 rpi/nrfl.py
 .*project
 workspace/.*
+
+*.d
+
+*.d

@@ -1,3 +1,7 @@
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+
 #include <HardwareSerial.h>
 #include <Arduino.h>
 #include "pir.h"
