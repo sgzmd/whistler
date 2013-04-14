@@ -5,7 +5,7 @@ deps = ["nrfl.cpp",
         "lib/gpio/gpio.cpp",
         "lib/libcxxtl/tri_logger.cpp"]
 
-env = Environment(CCFLAGS = '-DETLOG -I../common/arpix -g -ggdb -gstabs+ -g3 -pipe')
+env = Environment(CCFLAGS = '-DETLOG -I../common/arpix  -Ilib/RF24 -g -ggdb -gstabs+ -g3 -pipe')
 
 swigCmdLine = 'swig -c++ -python -I../common/arpix nrfl.i'
 swigDefs = env.Command( 'nrfl_wrap.cxx', 'nrfl.i', swigCmdLine )
