@@ -53,11 +53,10 @@ OBJECTS    = \
 	$(ACORE)/Tone.o \
 	$(ACORE)/USBCore.o \
 	$(ARDUINO_BASE)/libraries/SPI/SPI.o \
-	$(ACORE)/main.o \
 	../../../common/arpix/arpix.o
 
 TEST_OBJECTS = test_pir.o
-MAIN_OBJECTS = main.o
+MAIN_OBJECTS = whistler.o
 
 AVRDUDE = $(ARDUINO_BASE)/hardware/tools/avr/bin/avrdude -p$(DEVICE) \
 	-C$(ARDUINO_BASE)/hardware/tools/avr/etc/avrdude.conf \

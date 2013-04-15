@@ -5,7 +5,7 @@
 // PIR detects some motion and wants to update the caller.
 class MotionDetectionCallback {
 public:
-  virtual ~MotionDetectionCallback();
+  virtual ~MotionDetectionCallback() {}
   virtual void OnMotionDetected(unsigned short detected_for_ms) = 0;
 };
 
