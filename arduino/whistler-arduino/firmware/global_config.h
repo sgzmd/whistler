@@ -1,7 +1,7 @@
 #ifndef GLOBAL_CONFIG_H_
 #define GLOBAL_CONFIG_H_
 
-#define SERIAL_DEBUG
+// #define SERIAL_DEBUG
 
 #ifdef SERIAL_DEBUG
 

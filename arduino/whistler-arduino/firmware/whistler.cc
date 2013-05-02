@@ -11,11 +11,6 @@ int main(void) {
   Serial.begin(57600);
   Serial.println("Test");
 
-  for (;;) {}
-}
-
-/*
-
   IF_SERIAL_DEBUG("Starting main() method");
 
   RadioCallback* callback = new RadioCallback(kCePin, kCsnPin);
@@ -29,4 +24,4 @@ int main(void) {
   // that's it. There's no exit from here.
   sensor->Loop();
 }
- */
+

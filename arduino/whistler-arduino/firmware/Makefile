@@ -7,22 +7,33 @@
 #
 # Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
 
-DEVICE     = atmega328p
+DEVICE     = atmega16
 #atmega2560
 CLOCK      = 16000000
 PROGRAMMER = -c stk500v2 -P avrdoper
 FUSES      = -U hfuse:w:0xd9:m -U lfuse:w:0x24:m
 
-ARDUINO_BASE=/Applications/Arduino.app/Contents/Resources/Java
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    AVRBIN = /usr/bin
+    ARDUINO_BASE = /usr/share/arduino
+endif
+ifeq ($(UNAME_S),Darwin)
+    AVRBIN = /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin
+    ARDUINO_BASE = /Applications/Arduino.app/Contents/Resources/Java
+endif
+
 ARDUINO=$(ARDUINO_BASE)/hardware/arduino
 ACORE=$(ARDUINO)/cores/arduino
 
-CPP=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc
+
+CPP=$(AVRBIN)/avr-gcc
 CPPFLAGS=-c -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -D__AVR_LIBC_DEPRECATED_ENABLE__ -MMD -fpermissive
-AR  = /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-ar
-LINKER=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc -Os -Wl,--gc-sections -mmcu=$(DEVICE)
-AVROBJ=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-objcopy
-AVRSIZE=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-size
+AR  = $(AVRBIN)/avr-ar
+LINKER=$(AVRBIN)/avr-gcc -Os -Wl,--gc-sections -mmcu=$(DEVICE)
+AVROBJ=$(AVRBIN)/avr-objcopy
+AVRSIZE=$(AVRBIN)/avr-size
 
 COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-DF_CPU=$(CLOCK)L -DARDUINO=152 \
@@ -43,7 +54,6 @@ OBJECTS    = \
 	$(ACORE)/Print.o \
 	$(ACORE)/WString.o \
 	$(ACORE)/new.o \
-	$(ACORE)/malloc.o \
 	$(ACORE)/WInterrupts.o \
 	$(ACORE)/wiring_analog.o \
 	$(ACORE)/wiring_pulse.o \
@@ -72,7 +82,7 @@ all:	main.hex
 	$(COMPILE) $(CPPFLAGS)  -c $< -o $@
 
 .cc.o:
-	$(COMPILE) $(CPPFLAGS)  -c $< -o $@
+	$(COMPILE) $(CPPFLAGS) -c $< -o $@
 
 .cpp.o:
 	$(COMPILE) $(CPPFLAGS) -c $< -o $@
