@@ -1,3 +1,5 @@
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #include <HardwareSerial.h>
 
 #include "global_config.h"

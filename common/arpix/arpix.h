@@ -1,3 +1,5 @@
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #ifndef __ARPIX_H
 #define __ARPIX_H
 

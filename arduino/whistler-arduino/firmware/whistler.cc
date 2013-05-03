@@ -1,3 +1,6 @@
+// Main function for Whistler-Arduino
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #include "pir.h"
 #include "activity_sender.h"
 #include "global_config.h"

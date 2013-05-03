@@ -1,3 +1,5 @@
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #ifndef __ACTIVITY_SENDER_H
 #define __ACTIVITY_SENDER_H
 

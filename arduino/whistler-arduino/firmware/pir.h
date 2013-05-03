@@ -1,3 +1,5 @@
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #ifndef __PIR_H
 #define __PIR_H
 

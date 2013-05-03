@@ -1,9 +1,4 @@
-/*
- * test_pir.cc
- *
- *  Created on: Mar 31, 2013
- *      Author: kirillov
- */
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
 
 #include <HardwareSerial.h>
 #include <printf.h>

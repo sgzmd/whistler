@@ -1,3 +1,5 @@
+// Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
+
 #include <string.h>
 #include <stdio.h>
 #include "arpix.h"
