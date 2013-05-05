@@ -7,7 +7,7 @@
 #
 # Author: Roman "sgzmd" Kirillov [me@romankirillov.info]
 
-DEVICE     = atmega16
+DEVICE     = atmega328p
 #atmega2560
 CLOCK      = 16000000
 PROGRAMMER = -c stk500v2 -P avrdoper
