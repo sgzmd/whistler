@@ -25,13 +25,8 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 ARDUINO=$(ARDUINO_BASE)/hardware/arduino
-ACORE=$(ARDUINO)/avr/cores/arduino
+ACORE=$(ARDUINO)/cores/arduino
 
-ifeq ($(DEVICE), atmega2560)
-	VARIANTS=$(ARDUINO)/avr/variants/mega
-else
-	VARIANTS=$(ARDUINO)/avr/variants/standard
-endif
 
 CPP=$(AVRBIN)/avr-gcc
 CPPFLAGS=-c -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -D__AVR_LIBC_DEPRECATED_ENABLE__ -MMD -fpermissive
@@ -43,16 +38,12 @@ AVRSIZE=$(AVRBIN)/avr-size
 COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-DF_CPU=$(CLOCK)L -DARDUINO=152 \
 	-I../../../common/arpix \
-	-I/$(ACORE) \
+	-I/$(ARDUINO)/cores/arduino \
 	-I$(ARDUINO)/variants/standard \
 	-I$(ARDUINO_BASE)/libraries/SPI \
-	-I$(VARIANTS) \
 	-IRF24
 
 OBJECTS    = \
-	pir.o \
-	global_config.o \
-	activity_sender.o \
 	RF24/RF24.o \
 	$(ACORE)/wiring_digital.o \
 	$(ACORE)/wiring.o \
@@ -70,12 +61,6 @@ OBJECTS    = \
 	$(ACORE)/USBCore.o \
 	$(ARDUINO_BASE)/libraries/SPI/SPI.o \
 	../../../common/arpix/arpix.o
-
-OBJECTS = $(ACORE)/HardwareSerial.o \
-	$(ACORE)/Print.o \
-	$(ACORE)/wiring.o \
-	$(ACORE)/wiring_digital.o \
-	$(ACORE)/hooks.o
 
 TEST_OBJECTS = test_pir.o
 MAIN_OBJECTS = whistler.o

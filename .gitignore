@@ -18,3 +18,5 @@ workspace/.*
 *.d
 
 *.d
+
+arduino/whistler-arduino/whistler_firmware/.settings/de.innot.avreclipse.core.prefs
