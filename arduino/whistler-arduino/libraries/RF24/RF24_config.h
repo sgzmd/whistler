@@ -10,8 +10,6 @@
 #ifndef __RF24_CONFIG_H__
 #define __RF24_CONFIG_H__
 
-#define SERIAL_DEBUG
-
 #if ARDUINO < 100
 #include <WProgram.h>
 #else
@@ -31,6 +29,7 @@ extern HardwareSPI SPI;
 #define _BV(x) (1<<(x))
 #endif
 
+#undef SERIAL_DEBUG
 #ifdef SERIAL_DEBUG
 #define IF_SERIAL_DEBUG(x) ({x;})
 #else

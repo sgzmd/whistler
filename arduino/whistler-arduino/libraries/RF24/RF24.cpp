@@ -20,7 +20,7 @@ void RF24::csn(int mode)
   // CLK:BUS 8Mhz:2Mhz, 16Mhz:4Mhz, or 20Mhz:5Mhz
 #ifdef ARDUINO
   SPI.setBitOrder(MSBFIRST);
-  SPI.setDataMode(SPI_MODE0);
+  SPI.setDataMode(SPI_MODE0);	
   SPI.setClockDivider(SPI_CLOCK_DIV4);
 #endif
   digitalWrite(csn_pin,mode);
@@ -28,7 +28,7 @@ void RF24::csn(int mode)
 
 /****************************************************************************/
 
-void RF24::ce(int level)
+void RF24::ce(int level)	
 {
   digitalWrite(ce_pin,level);
 }
