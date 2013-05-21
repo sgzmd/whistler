@@ -24,6 +24,7 @@ LINKER=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/
 
 COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-DF_CPU=$(CLOCK)L -DARDUINO=152 \
+	-I../../../common/arpix \
 	-I/$(ARDUINO)/avr/cores/arduino \
 	-I$(ARDUINO)/avr/variants/standard \
 	-I$(ARDUINO)/avr/libraries/SPI \
@@ -86,8 +87,8 @@ flash:	all
 clean:
 	rm -f main.hex main.elf main.eep main.d core.a $(OBJECTS)
 
-main.elf: core.a
-	$(LINKER) -o main.elf main.o core.a -lm
+main.elf: $(OBJECTS)
+	$(LINKER) -o main.elf $(OBJECTS) -lm
 
 main.hex: main.elf
 	rm -f main.hex
