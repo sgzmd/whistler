@@ -83,9 +83,9 @@ void setup(void)
 
   radio.setPayloadSize(8);
   radio.setRetries(15,15);
-  radio.setDataRate(RF24_250KBPS);
+  radio.setDataRate(RF24_1MBPS);
   radio.setPALevel(RF24_PA_LOW);
-  radio.setChannel(0);
+  radio.setChannel(11);
   radio.setCRCLength(RF24_CRC_16);
 
   //
