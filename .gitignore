@@ -1,0 +1,13 @@
+
+arduino/whistler-arduino/firmware/.cproject
+
+arduino/whistler-arduino/firmware/.project
+*.d
+*.o
+*.*project
+workspace/*
+*.hex
+*.elf
+*.eep
+.scons*
+*.prefs

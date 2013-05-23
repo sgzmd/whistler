@@ -13,10 +13,37 @@ RF24 radio(9,10);
 const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
 
+
+// Motion Detection Constants
+const int kOneSecondDelay = 1000;
+const int kSmallDelay = 50;
+const int kPirPinNumber = 3;
+const int kMotionDelaysMs = 500;
+
+
+unsigned long long motion_started_ms_ = 0;
+
+
+void startMotion() {
+  motion_started_ms_ = millis();
+}
+
+bool isActive() {
+  return motion_started_ms_ != 0;
+}
+
+void stopMotion() {
+  motion_started_ms_ = 0;
+}
+
+unsigned long long wasActiveFor() {
+  return millis() - motion_started_ms_;
+}
+
 void dump_airpimessage(const ArPiMessage& rpm) {
   printf("ArPiMessage { sender_id = %x, data = %d}",
-         rpm.sender_id,
-         rpm.data);
+   rpm.sender_id,
+   rpm.data);
 }
 
 //
@@ -64,60 +91,96 @@ void setup(void)
 
   EMPTY_MESSAGE.sender_id = 0xDEADBEEF;
   EMPTY_MESSAGE.data = 0;
+
+  pinMode(kPirPinNumber, INPUT);
+  digitalWrite(kPirPinNumber, LOW);
+
+  Serial.print("Configuring PIR on pin");
+  Serial.println(kPirPinNumber);
+
+  for (int i = 0; i < 3; ++i) {
+    delay(kOneSecondDelay);
+  }
+
+  delay(kSmallDelay);
+
   // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
   // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
   // EMPTY_MESSAGE.debug_message[strlen(EMPTY_MESSAGE.debug_message)] = 0;
 }
 
-void loop(void)
-{
-    // First, stop listening so we can talk.
-  radio.stopListening();
-
-    // Take the time, and send it.  This will block until complete
+void loop(void) {
   unsigned long time = millis();
-  printf("Now sending %lu...",time);
+  if (digitalRead(kPirPinNumber) == HIGH) {
+  // if (1) {
+    if (isActive()) {
+    // if (1) {
+      // if (1) {
+      if (wasActiveFor() > kMotionDelaysMs) {
 
-  ArPiMessage data;
-  memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
+        // We were active for sufficiently long,
+        // so let's start acting on this
+        // callback_->OnMotionDetected(WasActiveFor());
+        // LOG("Was active for %d milliseconds", wasActiveFor());
 
-  data.data = time;
-  data.parity = parity(time);
+        radio.stopListening();
 
-  dump_airpimessage(data);
+        ArPiMessage data;
+        memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
 
-  bool ok = radio.write( &data, sizeof(data));
+        data.data = time;
+        data.parity = parity(time);
 
-  if (ok)
-    printf("ok...");
-  else
-    printf("failed.\n\r");
+        dump_airpimessage(data);
 
-    // Now, continue listening
-  radio.startListening();
+        bool ok = radio.write( &data, sizeof(data));
 
-    // Wait here until we get a response, or timeout (250ms)
-  unsigned long started_waiting_at = millis();
-  bool timeout = false;
-  while ( ! radio.available() && ! timeout )
-    if (millis() - started_waiting_at > 200 )
-      timeout = true;
 
-  // Describe the results
-  if ( timeout )
-  {
-    printf("Failed, response timed out.\n\r");
+        if (ok)
+          printf("ok...");
+        else
+          printf("failed.\n\r");
+
+        // Now, continue listening
+        radio.startListening();
+
+        // Wait here until we get a response, or timeout (250ms)
+        unsigned long started_waiting_at = millis();
+        bool timeout = false;
+        while ( ! radio.available() && ! timeout )
+          if (millis() - started_waiting_at > 200 )
+            timeout = true;
+
+      // Describe the results
+          if ( timeout )
+          {
+            printf("Failed, response timed out.\n\r");
+          }
+          else
+          {
+        // Grab the response, compare, and send to debugging spew
+            ArPiMessage got_time;
+            radio.read( &got_time, sizeof(got_time) );
+
+        // Spew it
+            printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time.data);
+          }
+
+      // Try again 1s later
+          delay(100);
+
+        // if (radio_.write(BUFFER, length)) {
+        //   Serial.println(String("Sent ") + BUFFER);
+        // } else {
+        //   Serial.println(String("Failed to send ") + BUFFER);
+        // }
+        }
+      } else {
+        startMotion();
+      }
+    } else {
+      if (isActive()) {
+        stopMotion();
+      }
+    }
   }
-  else
-  {
-    // Grab the response, compare, and send to debugging spew
-    ArPiMessage got_time;
-    radio.read( &got_time, sizeof(got_time) );
-
-    // Spew it
-    printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time.data);
-  }
-
-  // Try again 1s later
-  delay(100);
-}

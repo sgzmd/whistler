@@ -1,0 +1,404 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sens",
+				"sensorId"
+			],
+			[
+				"crea",
+				"createSensor"
+			],
+			[
+				"sensor",
+				"sensor_id"
+			],
+			[
+				"STAT",
+				"STATUS_FAILED"
+			],
+			[
+				"Key",
+				"KeyFromSensorId"
+			],
+			[
+				"SEns",
+				"SensorMessage"
+			],
+			[
+				"Enum",
+				"EnumHelpers"
+			],
+			[
+				"find_element_",
+				"find_element_by_css_selector"
+			],
+			[
+				"mode",
+				"model"
+			],
+			[
+				"get",
+				"get_page_count"
+			],
+			[
+				"ext",
+				"extracted_cars"
+			],
+			[
+				"model",
+				"model_name"
+			],
+			[
+				"find_elements",
+				"find_element_by_css_selector"
+			],
+			[
+				"car",
+				"car_results"
+			],
+			[
+				"ex",
+				"extract_cars"
+			],
+			[
+				"mini",
+				"mini"
+			],
+			[
+				"MAX_",
+				"MAX_LOGGING_SECONDS"
+			],
+			[
+				"Thread",
+				"ThreadFunction"
+			],
+			[
+				"jso",
+				"jsonize"
+			],
+			[
+				"call",
+				"callbacks"
+			],
+			[
+				"class",
+				"classmethod"
+			],
+			[
+				"r",
+				"RECVS"
+			],
+			[
+				"comm",
+				"communicator"
+			],
+			[
+				"pir",
+				"pir_pin"
+			],
+			[
+				"start",
+				"start_listener"
+			],
+			[
+				"init",
+				"initialised"
+			],
+			[
+				"initia",
+				"initialised"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "arduino/whistler-arduino/firmware/Makefile",
+			"settings":
+			{
+				"buffer_size": 3472,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
+			"settings":
+			{
+				"buffer_size": 2794,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 93.0,
+		"selected_items":
+		[
+			[
+				"preview",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"mark",
+				"Markdown Preview: preview in Browser"
+			]
+		],
+		"width": 561.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/media/sf_whistler/arduino/whistler-arduino/firmware/main.cc",
+		"/media/sf_whistler/rpi/main.cpp",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.cpp",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/nRF24L01.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/README.md",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/Makefile",
+		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/gpio/gpio.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/rpi/Makefile",
+		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/spi/spi.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/main.c",
+		"/Volumes/rpihome/code/nrf24-rpi/lib/RF24/RF24.h",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/static/style.css",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/sensors.js",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/main.py",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/static/sensors.js",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/index.html",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/static/index.html",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/README.md",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/client/web/app.yaml",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/appengine/sensors.py",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/gce.sublime-project",
+		"/Users/kirillov/Dropbox/Develop/google-cloud-endpoints/gce.sublime-workspace",
+		"/Users/kirillov/Dropbox/Develop/miniparser/minidriver.py",
+		"/Library/Python/2.7/site-packages/selenium-2.31.0-py2.7.egg/selenium/webdriver/chrome/service.py",
+		"/Volumes/rpihome/code/irp/configserver/app.html",
+		"/Volumes/rpihome/code/irp/configserver/static/app.html",
+		"/Volumes/rpihome/code/irp/configserver/my.js",
+		"/Volumes/rpihome/code/irp/configserver/static/my.js",
+		"/Volumes/rpihome/code/irp/configserver/my.css",
+		"/Volumes/rpihome/code/irp/configserver/app.yaml",
+		"/Volumes/rpihome/code/irp/configserver/index.yaml",
+		"/Volumes/rpihome/code/irp/smtpconfig.py",
+		"/Volumes/rpihome/code/irp/.gitignore~",
+		"/Volumes/rpihome/code/irp/.gitignore",
+		"/Volumes/rpihome/code/irp/smtp-config.py",
+		"/Users/kirillov/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Volumes/rpihome/code/irp/irp.sublime-workspace",
+		"/Volumes/rpihome/code/irp/pir"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"payload",
+			"print_byte_register",
+			"openReadingPipe",
+			"delete",
+			"(\"\");",
+			"logger",
+			"20",
+			"page",
+			"pager",
+			"lcd",
+			"CurrentlyRunning",
+			"start_listener",
+			"init_sensor",
+			"time."
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"logging",
+			"0.5",
+			"StartListenerLoop",
+			"InitSensor",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "arduino/whistler-arduino/firmware/Makefile",
+					"settings":
+					{
+						"buffer_size": 3472,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								366,
+								366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
+					"settings":
+					{
+						"buffer_size": 2794,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1224,
+								1224
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 283.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true
+}
