@@ -50,6 +50,7 @@ OBJECTS    = \
 	$(ACORE)/Tone.o \
 	$(ACORE)/hooks.o \
 	$(ACORE)/USBCore.o \
+	../../../common/arpix/arpix.o \
 	$(ARDUINO)/avr/libraries/SPI/SPI.o \
 
 

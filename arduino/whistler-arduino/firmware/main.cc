@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -9,10 +11,11 @@
 // CE=9, CSN=10
 RF24 radio(9,10);
 
+const unsigned long kSenderId = 0xCAFEBABE;
+
 // Radio pipe addresses for the 2 nodes to communicate.
 const uint64_t WRITING_PIPE = 0xF0F0F0F0D2LL;
 const uint64_t READING_PIPE = 0xF0F0F0F0E1LL;
-
 
 // Motion Detection Constants
 const int kOneSecondDelay = 1000;
@@ -41,7 +44,7 @@ unsigned long long wasActiveFor() {
 }
 
 void dump_airpimessage(const ArPiMessage& rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %d}",
+  printf("ArPiMessage { sender_id = %x, data = %u}",
    rpm.sender_id,
    rpm.data);
 }
@@ -103,19 +106,12 @@ void setup(void)
   }
 
   delay(kSmallDelay);
-
-  // memset(EMPTY_MESSAGE.debug_message, 0, sizeof(EMPTY_MESSAGE.debug_message));
-  // strcpy(EMPTY_MESSAGE.debug_message, "Noop");
-  // EMPTY_MESSAGE.debug_message[strlen(EMPTY_MESSAGE.debug_message)] = 0;
 }
 
 void loop(void) {
   unsigned long time = millis();
   if (digitalRead(kPirPinNumber) == HIGH) {
-  // if (1) {
     if (isActive()) {
-    // if (1) {
-      // if (1) {
       if (wasActiveFor() > kMotionDelaysMs) {
 
         // We were active for sufficiently long,
@@ -126,10 +122,10 @@ void loop(void) {
         radio.stopListening();
 
         ArPiMessage data;
-        memcpy(&data, &EMPTY_MESSAGE, sizeof(ArPiMessage));
 
         data.data = time;
         data.parity = parity(time);
+        data.sender_id = kSenderId;
 
         dump_airpimessage(data);
 
