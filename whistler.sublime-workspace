@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"buff",
+				"buffer_length"
+			],
+			[
+				"k",
+				"kDeviceId"
+			],
+			[
+				"forma",
+				"formatMessage"
+			],
+			[
 				"sens",
 				"sensorId"
 			],
@@ -116,18 +128,45 @@
 	"buffers":
 	[
 		{
-			"file": "arduino/whistler-arduino/firmware/Makefile",
+			"contents": "",
+			"file": "arduino/whistler-arduino/whistler_firmware/whistler_firmware.ino",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 3472,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
+			"file": "arduino/whistler-arduino/firmware/main.cc",
+			"settings":
+			{
+				"buffer_size": 4184,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/arpix/configure_radio.h",
+			"settings":
+			{
+				"buffer_size": 802,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "arduino/whistler-arduino/firmware/Makefile",
 			"settings":
 			{
 				"buffer_size": 2794,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/arpix/arpix.h",
+			"settings":
+			{
+				"buffer_size": 133,
 				"line_ending": "Unix"
 			}
 		}
@@ -135,23 +174,27 @@
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 93.0,
+		"height": 159.0,
 		"selected_items":
 		[
 			[
-				"preview",
-				"Markdown Preview: preview in Browser"
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
 			],
 			[
 				"c++",
 				"Set Syntax: C++"
 			],
 			[
-				"reind",
-				"Indentation: Reindent Lines"
+				"preview",
+				"Markdown Preview: preview in Browser"
 			],
 			[
-				"reinde",
+				"reind",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -159,7 +202,7 @@
 				"Markdown Preview: preview in Browser"
 			]
 		],
-		"width": 561.0
+		"width": 435.0
 	},
 	"console":
 	{
@@ -176,13 +219,22 @@
 	},
 	"file_history":
 	[
+		"/Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SPI/SPI.cpp",
+		"/Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SPI/SPI.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.cpp",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24_config.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/printf.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.d",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/fw_mk2/Makefile",
+		"/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/Makefile",
 		"/media/sf_whistler/arduino/whistler-arduino/firmware/main.cc",
 		"/media/sf_whistler/rpi/main.cpp",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.cpp",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/nRF24L01.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/README.md",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/Makefile",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/gpio/gpio.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/Makefile",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/spi/spi.h",
@@ -233,6 +285,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"printf",
+			"printf_P",
+			"print_status",
+			"print",
+			"print(",
+			"print",
+			"write(",
+			"send",
+			"begin",
 			"payload",
 			"print_byte_register",
 			"openReadingPipe",
@@ -274,18 +335,100 @@
 			[
 				{
 					"buffer": 0,
-					"file": "arduino/whistler-arduino/firmware/Makefile",
+					"file": "arduino/whistler-arduino/whistler_firmware/whistler_firmware.ino",
 					"settings":
 					{
-						"buffer_size": 3472,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								366,
-								366
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "arduino/whistler-arduino/firmware/main.cc",
+					"settings":
+					{
+						"buffer_size": 4184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2571,
+								2571
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1830.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "common/arpix/configure_radio.h",
+					"settings":
+					{
+						"buffer_size": 802,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								308,
+								308
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "arduino/whistler-arduino/firmware/Makefile",
+					"settings":
+					{
+						"buffer_size": 2794,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2794,
+								2794
 							]
 						],
 						"settings":
@@ -299,24 +442,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
+					"buffer": 4,
+					"file": "common/arpix/arpix.h",
 					"settings":
 					{
-						"buffer_size": 2794,
+						"buffer_size": 133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1224,
-								1224
+								133,
+								133
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
