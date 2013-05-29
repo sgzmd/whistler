@@ -2,7 +2,7 @@
 #include <arpix.h>
 
 #include <signal.h>
-#include <iostream>
+#include <stdio.h>
 
 long good_messages = 0;
 long messages = 0;
@@ -11,13 +11,10 @@ bool running = true;
 
 void sighandler(int sig)
 {
-  std::cout<< "Signal " << sig << " caught..." << std::endl;
-  std::cout << "I have "
-            << good_messages
-            << " good of "
-            << messages
-            << " total messages"
-            << std::endl;
+  printf("Signal %d sig caught.\nI have %d good messages of %d total\n",
+         sig,
+         good_messages,
+         messages);
 
   running = false;
 }
