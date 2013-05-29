@@ -44,9 +44,10 @@ unsigned long long wasActiveFor() {
 }
 
 void dump_airpimessage(const ArPiMessage& rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %u}",
-   rpm.sender_id,
-   rpm.data);
+  Serial.println("Sending message");
+//  printf("ArPiMessage { sender_id = %x, data = %u}",
+//   rpm.sender_id,
+//   rpm.data);
 }
 
 //
