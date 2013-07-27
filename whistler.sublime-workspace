@@ -4,18 +4,6 @@
 		"selected_items":
 		[
 			[
-				"buff",
-				"buffer_length"
-			],
-			[
-				"k",
-				"kDeviceId"
-			],
-			[
-				"forma",
-				"formatMessage"
-			],
-			[
 				"sens",
 				"sensorId"
 			],
@@ -127,62 +115,23 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "",
-			"file": "arduino/whistler-arduino/whistler_firmware/whistler_firmware.ino",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "arduino/whistler-arduino/firmware/main.cc",
-			"settings":
-			{
-				"buffer_size": 4184,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "common/arpix/configure_radio.h",
-			"settings":
-			{
-				"buffer_size": 802,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "arduino/whistler-arduino/firmware/Makefile",
-			"settings":
-			{
-				"buffer_size": 2794,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "common/arpix/arpix.h",
-			"settings":
-			{
-				"buffer_size": 133,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 159.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"encode",
+				"StringEncode: HTML Entitize"
+			],
 			[
 				"reinde",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"indent",
+				"reinden",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -202,7 +151,7 @@
 				"Markdown Preview: preview in Browser"
 			]
 		],
-		"width": 435.0
+		"width": 561.0
 	},
 	"console":
 	{
@@ -219,22 +168,19 @@
 	},
 	"file_history":
 	[
-		"/Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SPI/SPI.cpp",
-		"/Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SPI/SPI.h",
+		"/Users/kirillov/Dropbox/Develop/whistler/README.md",
+		"/Users/kirillov/Downloads/google-blog-converters-r89/bin/blogger.xml",
+		"/Users/kirillov/Documents/inlondon-stub.html",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.cpp",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24_config.h",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.h",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/printf.h",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/libraries/RF24/RF24.d",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/fw_mk2/Makefile",
-		"/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/Makefile",
-		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/Makefile",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/whistler_firmware/whistler_firmware.in",
+		"/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/RF24/printf.h",
+		"/Users/kirillov/tmp/whistler/arduino/whistler-arduino/firmware/RF24/RF24.d",
 		"/media/sf_whistler/arduino/whistler-arduino/firmware/main.cc",
 		"/media/sf_whistler/rpi/main.cpp",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.cpp",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/RF24.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/nRF24L01.h",
-		"/Users/kirillov/Dropbox/Develop/whistler/README.md",
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/Makefile",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/gpio/gpio.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/Makefile",
 		"/Users/kirillov/Dropbox/Develop/whistler/rpi/lib/spi/spi.h",
@@ -285,15 +231,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"printf",
-			"printf_P",
-			"print_status",
-			"print",
-			"print(",
-			"print",
-			"write(",
-			"send",
-			"begin",
+			"&lt;img src='http://inlondon.org/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /&gt;",
+			"<img alt=\":-)\"",
+			"write_reg",
+			"$\\s\\swrite_register",
+			"^  write_register(",
+			"^write_register(",
+			"^  write_register(",
+			"write_register(",
+			"uint8_t write_register",
+			"void write_register",
+			"write_register",
+			"radio->",
+			"pirPinNumber",
 			"payload",
 			"print_byte_register",
 			"openReadingPipe",
@@ -315,6 +265,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			":-)",
+			"radio_.",
+			"kPirPinNumber",
 			"logging",
 			"0.5",
 			"StartListenerLoop",
@@ -329,146 +282,6 @@
 	},
 	"groups":
 	[
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 0,
-					"file": "arduino/whistler-arduino/whistler_firmware/whistler_firmware.ino",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "arduino/whistler-arduino/firmware/main.cc",
-					"settings":
-					{
-						"buffer_size": 4184,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2571,
-								2571
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1830.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "common/arpix/configure_radio.h",
-					"settings":
-					{
-						"buffer_size": 802,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								308,
-								308
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "arduino/whistler-arduino/firmware/Makefile",
-					"settings":
-					{
-						"buffer_size": 2794,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2794,
-								2794
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "common/arpix/arpix.h",
-					"settings":
-					{
-						"buffer_size": 133,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								133,
-								133
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
 		{
 			"sheets":
 			[
@@ -492,18 +305,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":

@@ -28,16 +28,19 @@ COMPILE = $(CPP) -mmcu=$(DEVICE) \
 	-I/$(ARDUINO)/avr/cores/arduino \
 	-I$(ARDUINO)/avr/variants/standard \
 	-I$(ARDUINO)/avr/libraries/SPI \
+	-I$(ARDUINO)/avr/libraries/EEPROM \
 	-IRF24
 
 OBJECTS    = \
 	main.o \
+	sensor_id.o \
 	RF24/RF24.o \
 	$(ACORE)/wiring_digital.o \
 	$(ACORE)/wiring.o \
 	$(ACORE)/HardwareSerial.o \
 	$(ACORE)/Print.o \
 	$(ACORE)/WString.o \
+	$(ACORE)/WMath.o \
 	$(ACORE)/new.o \
 	$(ACORE)/malloc.o \
 	$(ACORE)/WInterrupts.o \
@@ -52,12 +55,13 @@ OBJECTS    = \
 	$(ACORE)/USBCore.o \
 	../../../common/arpix/arpix.o \
 	$(ARDUINO)/avr/libraries/SPI/SPI.o \
+	$(ARDUINO)/avr/libraries/EEPROM/EEPROM.o \
 
 
 AVRDUDE = $(ARDUINO_BASE)/hardware/tools/avr/bin/avrdude -p$(DEVICE) \
 	-C$(ARDUINO_BASE)/hardware/tools/avr/etc/avrdude.conf \
 	-carduino \
-	-P/dev/tty.usbmodemfd131 -b115200 -D
+	-P/dev/tty.usbmodemfd1371 -b115200 -D
 
 SRC=$(wildcard *.cc) $(wildcard *.cpp) RF24/RF24.cpp
 
@@ -86,7 +90,7 @@ flash:	all
 	$(AVRDUDE) -U flash:w:main.hex:i
 
 clean:
-	rm -f main.hex main.elf main.eep main.d core.a $(OBJECTS)
+	rm -f main.hex main.elf main.eep main.d sensor_id.a sensor_id.d core.a $(OBJECTS)
 
 main.elf: $(OBJECTS)
 	$(LINKER) -o main.elf $(OBJECTS) -lm
