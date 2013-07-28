@@ -1,4 +1,13 @@
+/**
+ * Main SWIG wrapped module for NRFL receiver. Heavily modified from original code
+ * to support my use case.
+ *
+ * Author: me@romankirillov.info (Roman "sgzmd" Kirillov)
+ */
+
 /*
+ * Original Copyright:
+ *
  * File:   main.cpp
  * Author: purinda
  *
