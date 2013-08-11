@@ -4,6 +4,6 @@
 #include <arpix.h>
 
 void setup(void);
-ArPiMessage loop(void);
+unsigned long NextSenderId();
 
 #endif
