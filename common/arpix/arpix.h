@@ -11,6 +11,4 @@ struct ArPiMessage {
   char parity;
 };
 
-// int dump_to_string(const ArPiMessage* msg, char* buffer, unsigned int length);
-
 #endif

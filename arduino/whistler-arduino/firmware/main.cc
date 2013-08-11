@@ -8,6 +8,8 @@
 #include <arpix.h>
 #include <configure_radio.h>
 
+#include "sensor_id.h"
+
 // CE=9, CSN=10
 RF24 radio(9,10);
 
@@ -26,7 +28,6 @@ const int kMotionDelaysMs = 500;
 
 unsigned long long motion_started_ms_ = 0;
 
-
 void startMotion() {
   motion_started_ms_ = millis();
 }
@@ -44,9 +45,10 @@ unsigned long long wasActiveFor() {
 }
 
 void dump_airpimessage(const ArPiMessage& rpm) {
-  printf("ArPiMessage { sender_id = %x, data = %u}",
-   rpm.sender_id,
-   rpm.data);
+  Serial.println("Sending message");
+//  printf("ArPiMessage { sender_id = %x, data = %u}",
+//   rpm.sender_id,
+//   rpm.data);
 }
 
 //
@@ -106,6 +108,9 @@ void setup(void)
   }
 
   delay(kSmallDelay);
+
+  // initialising random number generator from noise on input 0
+  randomSeed(analogRead(0));
 }
 
 void loop(void) {
@@ -125,7 +130,7 @@ void loop(void) {
 
         data.data = time;
         data.parity = parity(time);
-        data.sender_id = kSenderId;
+        data.sender_id = get_board_id();
 
         dump_airpimessage(data);
 
