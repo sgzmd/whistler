@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+import datetime
+
+def main():
+  fifo = open('/tmp/whistlerpipe', 'r')
+  while True:
+    line = fifo.readline().strip()
+    [sender,timestamp] = line.split(',')
+    time_str = datetime.datetime.fromtimestamp(int(timestamp))
+    print '{0}: activity of sender {1}'.format(time_str, sender)
+
+if __name__ == '__main__':
+  main()

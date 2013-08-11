@@ -3,11 +3,14 @@
 
 #include <signal.h>
 #include <stdio.h>
+#include <time.h>
 
 long good_messages = 0;
 long messages = 0;
 
 bool running = true;
+
+unsigned long loop(void);
 
 void sighandler(int sig)
 {
@@ -28,10 +31,16 @@ int main(void) {
   setup();
 
   while (running) {
-    ArPiMessage msg = loop();
+    unsigned long sender_id = loop();
     ++messages;
-    if (msg.sender_id != 0) {
+    if (sender_id != 0) {
+      FILE* pFile = fopen("/tmp/whistlerpipe", "w");
       ++good_messages;
+      time_t t;
+      time(&t);
+      printf("Writing to pipe: %d\n", sender_id);
+      fprintf(pFile, "%d,%d\n", sender_id, t);
+      fclose(pFile);
     }
   }
 

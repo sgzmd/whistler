@@ -94,10 +94,10 @@ void setup(void)
   TRI_LOG(sizeof(int));
 	// Refer to RF24.h or nRF24L01 DS for settings
 
-  TRI_LOG("radio.begin()");
+  TRI_LOG_STR("radio.begin()");
   radio.begin();
 
-  TRI_LOG("CONFIGURE_RADIO(radio)");
+  TRI_LOG_STR("CONFIGURE_RADIO(radio)");
   CONFIGURE_RADIO(radio);
 
 	// Open 6 pipes for readings ( 5 plus pipe0, also can be used for reading )
@@ -117,7 +117,7 @@ void setup(void)
 unsigned long loop(void)
 {
   unsigned long sender_id = 0;
-  ArPiMessage return_value;
+  ArPiMessage data;
 
   char blank[21]="FFFFFFFFFFFFFFFFFFFF";
 
