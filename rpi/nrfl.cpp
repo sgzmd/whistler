@@ -114,10 +114,10 @@ void setup(void)
   memset(&EMPTY_MESSAGE, 0, sizeof(ArPiMessage));
 }
 
-ArPiMessage loop(void)
+unsigned long loop(void)
 {
-  ArPiMessage data;
-  ArPiMessage *return_value = &EMPTY_MESSAGE;
+  unsigned long sender_id = 0;
+  ArPiMessage return_value;
 
   char blank[21]="FFFFFFFFFFFFFFFFFFFF";
 
@@ -139,11 +139,7 @@ ArPiMessage loop(void)
    } else {
 
      unsigned long timer = data.data;
-
-		// Display it on screen
-		// printf("Recv: size=%i payload=%d ",len, timer);
-
-     dump_airpimessage(data);
+     sender_id = data.sender_id;
 
 		// Send back payload to sender
      radio.stopListening();
@@ -152,7 +148,6 @@ ArPiMessage loop(void)
      if ( strcmp(receivePayload,blank)  ) {
        radio.write(receivePayload,len);
        TRI_LOG_STR("Sending back");
-       return_value = &data;
      } else {
        TRI_LOG_STR("Not sending anything back");
      }
@@ -161,5 +156,9 @@ ArPiMessage loop(void)
 
  radio.startListening();
 
- return *return_value;
+ return sender_id;
+}
+
+unsigned long NextSenderId() {
+  return loop();
 }
