@@ -61,7 +61,7 @@ OBJECTS    = \
 AVRDUDE = $(ARDUINO_BASE)/hardware/tools/avr/bin/avrdude -p$(DEVICE) \
 	-C$(ARDUINO_BASE)/hardware/tools/avr/etc/avrdude.conf \
 	-carduino \
-	-P/dev/tty.usbmodemfa141 -b115200 -D
+	-P/dev/tty.usbmodemfd131 -b115200 -D
 
 SRC=$(wildcard *.cc) $(wildcard *.cpp) RF24/RF24.cpp
 

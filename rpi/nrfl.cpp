@@ -93,23 +93,22 @@ void setup(void)
   TRI_LOG(sizeof(long));
   TRI_LOG(sizeof(int));
 	// Refer to RF24.h or nRF24L01 DS for settings
+
+  TRI_LOG("radio.begin()");
   radio.begin();
 
+  TRI_LOG("CONFIGURE_RADIO(radio)");
   CONFIGURE_RADIO(radio);
 
 	// Open 6 pipes for readings ( 5 plus pipe0, also can be used for reading )
   radio.openWritingPipe(WRITING_PIPE);
   radio.openReadingPipe(1, READING_PIPE);
-	//
-	// Start listening
-	//
 
   radio.startListening();
 
 	//
 	// Dump the configuration of the rf unit for debugging
 	//
-
   radio.printDetails();
 
   memset(&EMPTY_MESSAGE, 0, sizeof(ArPiMessage));
