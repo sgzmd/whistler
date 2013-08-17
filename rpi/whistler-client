@@ -1,11 +1,18 @@
 #!/usr/bin/python
 
+import time
 import datetime
 
 def main():
   fifo = open('/tmp/whistlerpipe', 'r')
   while True:
     line = fifo.readline().strip()
+    fields = line.split(',')
+
+    if len(fields) < 2:
+      time.sleep(0.1)
+      continue
+
     [sender,timestamp] = line.split(',')
     time_str = datetime.datetime.fromtimestamp(int(timestamp))
     print '{0}: activity of sender {1}'.format(time_str, sender)

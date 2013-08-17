@@ -145,16 +145,21 @@ unsigned long loop(void)
      radio.stopListening();
 
 		// Match for blank and do not re-send it out
-     if ( strcmp(receivePayload,blank)  ) {
-       radio.write(receivePayload,len);
-       TRI_LOG_STR("Sending back");
-     } else {
-       TRI_LOG_STR("Not sending anything back");
-     }
+     TRI_LOG_STR("All good");
+     
+     //     if ( strcmp(receivePayload,blank)  ) {
+     //       radio.write(receivePayload,len);
+     //       TRI_LOG_STR("Sending back");
+     // } else {
+     //   TRI_LOG_STR("Not sending anything back");
+     // }
    }
  }
 
- radio.startListening();
+  TRI_LOG_STR("radio.startListening()");
+  radio.startListening();
+
+  // radio.startListening();
 
  return sender_id;
 }

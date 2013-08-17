@@ -32,15 +32,20 @@ int main(void) {
 
   while (running) {
     unsigned long sender_id = loop();
+    printf("Sender ID: %d\n", sender_id);
     ++messages;
     if (sender_id != 0) {
       FILE* pFile = fopen("/tmp/whistlerpipe", "w");
+      if (pFile == NULL) {
+	perror("Error opening file");
+      }
       ++good_messages;
       time_t t;
       time(&t);
       printf("Writing to pipe: %d\n", sender_id);
       fprintf(pFile, "%d,%d\n", sender_id, t);
       fclose(pFile);
+      printf("Closing file...\n");
     }
   }
 
