@@ -10,6 +10,7 @@
 
 #include "sensor_id.h"
 
+
 // CE=9, CSN=10
 RF24 radio(9,10);
 
@@ -48,9 +49,6 @@ unsigned long long wasActiveFor() {
 
 void dump_airpimessage(const ArPiMessage& rpm) {
   Serial.println("Sending message");
-//  printf("ArPiMessage { sender_id = %x, data = %u}",
-//   rpm.sender_id,
-//   rpm.data);
 }
 
 //
@@ -156,31 +154,22 @@ void loop(void) {
           if (millis() - started_waiting_at > 200 )
             timeout = true;
 
-      // Describe the results
+          // Describe the results
           if ( timeout )
           {
             printf("Failed, response timed out.\n\r");
           }
           else
           {
-        // Grab the response, compare, and send to debugging spew
+            // Grab the response, compare, and send to debugging spew
             ArPiMessage got_time;
             radio.read( &got_time, sizeof(got_time) );
 
-        // Spew it
+            // Spew it
             printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time.data);
           }
 
-      // Try again 1s later
           delay(100);
-
-          digitalWrite(led, LOW);
-
-        // if (radio_.write(BUFFER, length)) {
-        //   Serial.println(String("Sent ") + BUFFER);
-        // } else {
-        //   Serial.println(String("Failed to send ") + BUFFER);
-        // }
         }
       } else {
         startMotion();

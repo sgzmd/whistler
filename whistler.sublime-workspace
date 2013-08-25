@@ -115,6 +115,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "arduino/whistler-arduino/firmware/main.cc",
+			"settings":
+			{
+				"buffer_size": 3883,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "arduino/whistler-arduino/firmware/Makefile",
+			"settings":
+			{
+				"buffer_size": 3012,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -168,6 +184,7 @@
 	},
 	"file_history":
 	[
+		"/Users/kirillov/Dropbox/Develop/whistler/arduino/whistler-arduino/firmware/RF24/printf.h",
 		"/Users/kirillov/Dropbox/Develop/whistler/README.md",
 		"/Users/kirillov/Downloads/google-blog-converters-r89/bin/blogger.xml",
 		"/Users/kirillov/Documents/inlondon-stub.html",
@@ -231,6 +248,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dump_airpimessage",
+			"motion_started_ms_",
+			"moving-ahead-from-old-code",
 			"&lt;img src='http://inlondon.org/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /&gt;",
 			"<img alt=\":-)\"",
 			"write_reg",
@@ -283,8 +303,63 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "arduino/whistler-arduino/firmware/main.cc",
+					"settings":
+					{
+						"buffer_size": 3883,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2047,
+								2047
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1204.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "arduino/whistler-arduino/firmware/Makefile",
+					"settings":
+					{
+						"buffer_size": 3012,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1104,
+								1104
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

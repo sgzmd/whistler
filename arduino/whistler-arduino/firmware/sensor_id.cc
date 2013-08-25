@@ -3,6 +3,7 @@
 #include <EEPROM.h>
 #include <Arduino.h>
 
+long random(long max);
 
 const unsigned int BOARD_ID_ADDRESS = 0;
 const unsigned int UNASSSIGNED = 0xFF;
