@@ -25,6 +25,8 @@ const int kSmallDelay = 50;
 const int kPirPinNumber = 3;
 const int kMotionDelaysMs = 500;
 
+const int led = 13;
+
 
 unsigned long long motion_started_ms_ = 0;
 
@@ -124,6 +126,8 @@ void loop(void) {
         // callback_->OnMotionDetected(WasActiveFor());
         // LOG("Was active for %d milliseconds", wasActiveFor());
 
+        digitalWrite(led, HIGH);
+
         radio.stopListening();
 
         ArPiMessage data;
@@ -169,6 +173,8 @@ void loop(void) {
 
       // Try again 1s later
           delay(100);
+
+          digitalWrite(led, LOW);
 
         // if (radio_.write(BUFFER, length)) {
         //   Serial.println(String("Sent ") + BUFFER);

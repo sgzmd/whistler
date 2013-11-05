@@ -17,6 +17,9 @@ ARDUINO_BASE=/Applications/Arduino.app/Contents/Resources/Java
 ARDUINO=$(ARDUINO_BASE)/hardware/arduino
 ACORE=$(ARDUINO)/avr/cores/arduino
 
+USB_DEVICE=/dev/tty.usbmodemfd131
+BITRATE=115200
+
 CPP=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-gcc
 CPPFLAGS=-c -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -D__AVR_LIBC_DEPRECATED_ENABLE__ -MMD -fpermissive
 AR  = /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-ar
@@ -61,7 +64,7 @@ OBJECTS    = \
 AVRDUDE = $(ARDUINO_BASE)/hardware/tools/avr/bin/avrdude -p$(DEVICE) \
 	-C$(ARDUINO_BASE)/hardware/tools/avr/etc/avrdude.conf \
 	-carduino \
-	-P/dev/tty.usbmodemfd131 -b115200 -D
+	-P$(USB_DEVICE) -b$(BITRATE) -D
 
 SRC=$(wildcard *.cc) $(wildcard *.cpp) RF24/RF24.cpp
 
